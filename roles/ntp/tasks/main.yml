@@ -1,0 +1,20 @@
+---
+# tasks file for ntp
+- name: Install ntp
+  yum: name=ntp state=present
+  tags: ntp
+
+- name: configure ntp file
+  template: src=ntp.conf.j2 dest=/etc/ntp.conf
+  tags: ntp
+  notify: restart ntp
+
+- name: start the ntp service
+  service: name=ntpd state=started enabled=yes
+  tags: ntp
+
+- name: test to see if selinx is running
+  command: getenforce
+  register: sestatus
+  changed_when: false
+
