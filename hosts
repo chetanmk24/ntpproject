@@ -1,2 +1,3 @@
 [group1]
 ip-172-31-47-137.us-east-2.compute.internal ansible_connection=local
+[group2]
